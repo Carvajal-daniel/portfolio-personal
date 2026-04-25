@@ -75,20 +75,36 @@ export function Navigation() {
           </div>
         </button>
 
-        {/* SOCIAL */}
-        <div className="flex items-center gap-4">
+        {/* SOCIAL MOBILE */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.08 },
+            },
+          }}
+          className="flex items-center gap-4"
+        >
           {socialLinks.map((link) => (
-            <a
+            <motion.a
               key={link.label}
               href={link.href}
               target={link.href.startsWith('mailto') ? undefined : '_blank'}
               rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-              className="text-sm text-white hover:opacity-60"
+              variants={{
+                hidden: { opacity: 0, y: -10 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.3 }}
+              whileHover={{ y: -2, opacity: 0.7 }}
+              className="text-sm text-white"
             >
               {link.label}
-            </a>
+            </motion.a>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* MENU OVERLAY */}
@@ -139,19 +155,35 @@ export function Navigation() {
 
       {/* DESKTOP SOCIAL */}
       <div className="hidden md:block fixed top-0 right-0 z-50 p-6 md:p-10">
-        <div className="flex items-center gap-6 justify-end">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.1 },
+            },
+          }}
+          className="flex items-center gap-6 justify-end"
+        >
           {socialLinks.map((link) => (
-            <a
+            <motion.a
               key={link.label}
               href={link.href}
               target={link.href.startsWith('mailto') ? undefined : '_blank'}
               rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-              className="text-sm text-white hover:opacity-60"
+              variants={{
+                hidden: { opacity: 0, y: -10 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.3 }}
+              whileHover={{ y: -3, opacity: 0.6, scale: 1.05 }}
+              className="text-sm text-white"
             >
               {link.label}
-            </a>
+            </motion.a>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* DESKTOP NAV */}
