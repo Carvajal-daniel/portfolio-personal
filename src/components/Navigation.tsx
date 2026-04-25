@@ -1,7 +1,11 @@
-import { useState } from 'react'
+"use client"
+
 import { useActiveSection } from '@/hooks/useActiveSection'
 import { useScrollVisibility } from '@/hooks/useScrollVisibility'
-import { cn } from '@/lib/utils'
+import { cn } from '@/libs/utils'
+import { useState } from 'react'
+import { Menu, X } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const navItems = [
   { id: 'about', label: 'About' },
@@ -13,9 +17,9 @@ const navItems = [
 ]
 
 const socialLinks = [
-  { label: 'Mail', href: 'mailto:bruce@banner.com' },
-  { label: 'Instagram', href: 'https://instagram.com' },
-  { label: 'Vimeo', href: 'https://vimeo.com' },
+  { label: 'Email', href: 'mailto:danielcarvajal.dev@gmail.com' },
+  { label: 'Instagram', href: 'https://www.instagram.com/daniel_vcarvajal' },
+  { label: 'Github', href: 'https://github.com/Carvajal-daniel' },
 ]
 
 export function Navigation() {
@@ -33,41 +37,45 @@ export function Navigation() {
 
   return (
     <>
-      {/* Mobile Header - Only visible on mobile */}
-      <div className="fixed top-0 left-0 right-0 z-50 p-6 flex justify-between items-start md:hidden">
-        {/* Menu Button - Left */}
-        <div className="relative">
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-sm text-white mix-blend-difference"
-          >
-            {mobileMenuOpen ? 'Close' : 'Menu'}
-          </button>
-
-          {/* Mobile Menu Dropdown */}
-          <div
-            className={cn(
-              'flex flex-col items-start gap-3 mt-6 transition-all duration-300',
-              mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
-            )}
-          >
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={cn(
-                  'text-sm text-white mix-blend-difference transition-all duration-300 relative py-1',
-                  'hover:opacity-60',
-                  activeSection === item.id && 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-white'
-                )}
-              >
-                {item.label}
-              </button>
-            ))}
+      {/* MOBILE HEADER */}
+      <div className="fixed top-0 left-0 right-0 z-[70] p-6 flex justify-between items-start md:hidden">
+        
+        {/* BOTÃO */}
+        <button
+          onClick={() => setMobileMenuOpen(prev => !prev)}
+          className="text-white p-2 -m-2"
+          aria-label="Toggle menu"
+        >
+          <div className="relative w-6 h-6">
+            <AnimatePresence mode="wait">
+              {mobileMenuOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ opacity: 0, rotate: -90, scale: 0.8 }}
+                  animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                  exit={{ opacity: 0, rotate: 90, scale: 0.8 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute inset-0"
+                >
+                  <X />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ opacity: 0, rotate: 90, scale: 0.8 }}
+                  animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                  exit={{ opacity: 0, rotate: -90, scale: 0.8 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute inset-0"
+                >
+                  <Menu />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-        </div>
+        </button>
 
-        {/* Social Links - Right (Mobile) */}
+        {/* SOCIAL */}
         <div className="flex items-center gap-4">
           {socialLinks.map((link) => (
             <a
@@ -75,7 +83,7 @@ export function Navigation() {
               href={link.href}
               target={link.href.startsWith('mailto') ? undefined : '_blank'}
               rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-              className="text-sm text-white mix-blend-difference hover:opacity-60 transition-opacity"
+              className="text-sm text-white hover:opacity-60"
             >
               {link.label}
             </a>
@@ -83,7 +91,53 @@ export function Navigation() {
         </div>
       </div>
 
-      {/* Desktop Social Links - Fixed Top Right (hidden on mobile) */}
+      {/* MENU OVERLAY */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-sm flex flex-col justify-center px-6 md:hidden"
+          >
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: 0.1,
+                  },
+                },
+              }}
+              className="flex flex-col gap-6"
+            >
+              {navItems.map((item) => (
+                <motion.button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  variants={{
+                    hidden: { opacity: 0, y: 40 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className={cn(
+                    "text-3xl text-white text-left",
+                    "hover:opacity-60",
+                    activeSection === item.id && "opacity-60"
+                  )}
+                >
+                  {item.label}
+                </motion.button>
+              ))}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* DESKTOP SOCIAL */}
       <div className="hidden md:block fixed top-0 right-0 z-50 p-6 md:p-10">
         <div className="flex items-center gap-6 justify-end">
           {socialLinks.map((link) => (
@@ -92,7 +146,7 @@ export function Navigation() {
               href={link.href}
               target={link.href.startsWith('mailto') ? undefined : '_blank'}
               rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-              className="text-sm text-white mix-blend-difference hover:opacity-60 transition-opacity"
+              className="text-sm text-white hover:opacity-60"
             >
               {link.label}
             </a>
@@ -100,29 +154,33 @@ export function Navigation() {
         </div>
       </div>
 
-      {/* Desktop Navigation Items - Fixed Bottom Right (hidden on mobile) */}
-      <nav 
-        className={cn(
-          'hidden md:block fixed bottom-0 right-0 z-50 p-6 md:p-10 transition-all duration-500',
-          isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8 pointer-events-none'
-        )}
+      {/* DESKTOP NAV */}
+      <motion.nav
+        initial={{ opacity: 0, x: 40 }}
+        animate={{
+          opacity: isVisible ? 1 : 0,
+          x: isVisible ? 0 : 40,
+        }}
+        transition={{ duration: 0.4 }}
+        className="hidden md:block fixed bottom-0 right-0 z-50 p-6 md:p-10"
       >
         <div className="flex flex-col items-end gap-3">
           {navItems.map((item) => (
-            <button
+            <motion.button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
+              whileHover={{ opacity: 0.6 }}
               className={cn(
-                'text-sm text-white mix-blend-difference transition-all duration-300 relative py-1',
-                'hover:opacity-60',
-                activeSection === item.id && 'after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-white'
+                "text-sm text-white relative py-1",
+                activeSection === item.id &&
+                  "after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-white"
               )}
             >
               {item.label}
-            </button>
+            </motion.button>
           ))}
         </div>
-      </nav>
+      </motion.nav>
     </>
   )
 }

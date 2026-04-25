@@ -1,7 +1,9 @@
 // components/NavigationWrapper.tsx
 "use client"
 
-import { Navigation } from "./Navegação"
+import { Navigation } from "./Navigation"
+
+
 
 
 export function NavigationWrapper() {

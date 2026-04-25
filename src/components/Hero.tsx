@@ -17,7 +17,8 @@ export function Hero() {
           className="
     w-full 
     h-screen md:h-[110vh] 
-    mt-20
+    mt-10
+    ml-10
     object-cover 
     object-[center_20%] md:object-[center_30%] 
     brightness-75
