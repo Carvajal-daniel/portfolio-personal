@@ -4,14 +4,17 @@ import { motion } from 'framer-motion'
 import type { Variants } from "framer-motion"
 
 const skills = [
-  'Editorial Photography',
-  'Portrait Photography',
-  'Documentary',
-  'Commercial Campaigns',
-  'Art Direction',
-  'Visual Storytelling',
-  'Photo Editing',
-  'Creative Direction',
+  'Next.js & React',
+  'TypeScript',
+  'Node.js (Express, Fastify)',
+  'REST APIs & Backend Architecture',
+  'Authentication & Authorization (JWT, Roles, Permissions)',
+  'Data Validation (Zod, class-validator)',
+  'PostgreSQL & MongoDB',
+  'Prisma & Drizzle ORM',
+  'Docker',
+  'Tailwind CSS & shadcn/ui',
+  'Arquitetura Hexagonal'
 ]
 
 
@@ -25,17 +28,18 @@ const fadeInUp: Variants = {
 }
 export function Skills() {
   return (
-    <section id="skills" className="section-padding bg-[#0d0d0d]">
+    <section id="skills" className="section-padding -mt-20 bg-[#0d0d0d]">
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
-        <motion.div {...fadeInUp} className="mb-16">
-          <span className="text-sm text-gray-500 tracking-widest uppercase">Expertise</span>
+        <motion.div {...fadeInUp} className="mb-13">
+          <span className="text-sm text-gray-500 tracking-widest uppercase">Experiência</span>
           <div className="w-6 h-px bg-gray-600 mt-2" />
         </motion.div>
 
         <motion.h2
           {...fadeInUp}
           className="font-display text-[10vw] lg:text-section leading-none tracking-tight mb-12 lg:mb-20"
+
         >
           SKILLS
         </motion.h2>

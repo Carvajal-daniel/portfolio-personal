@@ -3,12 +3,6 @@
 import { motion } from 'framer-motion'
 import type { Variants } from "framer-motion"
 
-const contacts = [
-  { label: 'UNITED STATES', type: 'location', link: '#' },
-  { label: 'UNITED KINGDOM', type: 'location', link: '#' },
-]
-
-
 const fadeInUp: Variants = {
   initial: { opacity: 0, y: 40 },
   whileInView: {
@@ -20,114 +14,67 @@ const fadeInUp: Variants = {
 
 export function Contact() {
   return (
-    <section id="contact" className="section-padding">
+    <section id="contact" className="section-padding -mt-20">
       <div className="max-w-7xl mx-auto">
-        {/* Section Label */}
-        <motion.div {...fadeInUp} className="mb-16">
-          <span className="text-sm text-gray-500 tracking-widest uppercase">Contact</span>
+
+        {/* Label */}
+        <motion.div {...fadeInUp} className="mb-13">
+          <span className="text-sm text-gray-500 tracking-widest uppercase">
+            Contato
+          </span>
           <div className="w-6 h-px bg-gray-600 mt-2" />
         </motion.div>
 
-        {/* Giant Headline */}
+        {/* Title */}
         <motion.h2
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: 'easeOut' }}
-          className="font-display text-[12vw] lg:text-hero leading-none tracking-tight mb-8"
+          {...fadeInUp}
+          className="font-display text-[12vw] lg:text-hero leading-none tracking-tight mb-12"
         >
-          Get in touch
+          Vamos conversar
         </motion.h2>
 
-        <motion.div
+        {/* Description */}
+        <motion.p
           {...fadeInUp}
-          className="w-full h-px bg-gray-700 mb-12 lg:mb-16"
-        />
-
-        {/* Informal Text */}
-        <motion.div
-          {...fadeInUp}
-          className="mb-12 lg:mb-16 max-w-2xl"
+          className="text-gray-400 max-w-xl text-base md:text-lg leading-relaxed mb-12"
         >
-          <h3 className="text-xl md:text-2xl lg:text-3xl text-white font-light leading-tight mb-4">
-            I'M NOTORIOUSLY<br />
-            SLOW AT GETTING<br />
-            BACK TO EMAILS
-          </h3>
-          <p className="text-sm text-gray-500 tracking-widest uppercase">
-            IN A HURRY? PLEASE CONTACT MY AWESOME PRODUCERS
-          </p>
-        </motion.div>
+          Estou disponível para oportunidades, projetos ou qualquer conversa sobre tecnologia.
+        </motion.p>
 
         {/* Contact Links */}
-        <div className="space-y-0 max-w-2xl">
-          {contacts.map((contact, index) => (
-            <motion.a
-              key={contact.label}
-              href={contact.link}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="flex items-center justify-between border-t border-gray-800 py-5 md:py-6 group hover:bg-gray-900/30 transition-colors px-4 -mx-4"
-            >
-              <span className="text-sm text-gray-400 tracking-widest">
-                {contact.label}
-              </span>
-              <span className="text-gray-500 group-hover:text-white transition-colors">
-                ↗
-              </span>
-            </motion.a>
-          ))}
-          <div className="border-t border-gray-800" />
-        </div>
-
-        {/* Direct Contact */}
         <motion.div
           {...fadeInUp}
-          className="mt-16 lg:mt-24 pt-12 lg:pt-16 border-t border-gray-800"
+          className="flex flex-col sm:flex-row gap-6 text-lg"
         >
-          <p className="text-sm text-gray-500 mb-6 lg:mb-8 tracking-widest uppercase">
-            Or reach me directly
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 md:gap-16">
-            <a
-              href="mailto:bruce@banner.photography"
-              className="text-lg lg:text-xl text-gray-300 hover:text-white transition-colors underline underline-offset-4"
-            >
-              bruce@banner.photography
-            </a>
-            <a
-              href="https://instagram.com/brucebanner"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-lg lg:text-xl text-gray-300 hover:text-white transition-colors underline underline-offset-4"
-            >
-              Instagram
-            </a>
-            <a
-              href="https://vimeo.com/brucebanner"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-lg lg:text-xl text-gray-300 hover:text-white transition-colors underline underline-offset-4"
-            >
-              Vimeo
-            </a>
-          </div>
+          {/* Email */}
+          <a
+            href="mailto:danielcarvajal.dev@gmail.com"
+            className="text-gray-300 hover:text-white transition-colors underline underline-offset-4"
+          >
+            danielcarvajal.dev@gmail.com
+          </a>
+
+          {/* WhatsApp */}
+          <a
+            href="https://wa.me/5585921842910"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-300 hover:text-white transition-colors underline underline-offset-4"
+          >
+            WhatsApp
+          </a>
+
+          {/* GitHub */}
+          <a
+            href="https://github.com/Carvajal-daniel"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-300 hover:text-white transition-colors underline underline-offset-4"
+          >
+            GitHub
+          </a>
         </motion.div>
 
-        {/* Footer */}
-        <motion.footer
-          {...fadeInUp}
-          className="mt-24 lg:mt-32 pt-8 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center gap-4"
-        >
-          <p className="text-xs text-gray-600">
-            © {new Date().getFullYear()} Bruce Banner Photography. All rights reserved.
-          </p>
-          <p className="text-xs text-gray-600">
-            New York / London
-          </p>
-        </motion.footer>
       </div>
     </section>
   )

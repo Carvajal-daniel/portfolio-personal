@@ -5,45 +5,28 @@ import type { Variants } from "framer-motion"
 
 
 const experiences = [
+
+ {
+  title: 'Desenvolvedor Fullstack (Projeto em Desenvolvimento)',
+  company: 'Sistema de Automação de Agendamentos com IA',
+  period: '2026 — Atual',
+  description: 'Desenvolvimento de um sistema que automatiza o processo de agendamento com integração via WhatsApp, utilizando IA para automatizar atendimentos, recuperar clientes inativos e gerar promoções inteligentes aprovadas pelo proprietário. O objetivo é aumentar a retenção de clientes e otimizar a gestão de pequenos negócios.',
+  skills: ['Next.js', 'Node.js', 'REST API', 'Integração com IA', 'Docker'],
+},
   {
-    title: 'Senior Photographer & Creative Director',
-    company: 'National Geographic',
-    location: 'Washington D.C.',
-    period: '2020 — Present',
-    description: 'Leading visual storytelling projects across five continents. Responsible for conceptualizing and executing long-form documentary series, managing a team of 8 photographers, and establishing visual guidelines for flagship publications.',
-    skills: ['Documentary Photography', 'Team Leadership', 'Art Direction', 'Visual Storytelling', 'Project Management'],
+    title: 'Desenvolvedor Frontend (Colaboração)',
+    company: 'HomeFly',
+    location: 'Remoto',
+    period: '2024',
+    description: 'Colaboração no desenvolvimento de componentes frontend para um sistema CRM, com foco em reutilização, organização e melhoria da experiência do usuário.',
+    skills: ['React', 'Next.js', 'Componentes UI', 'Frontend'],
   },
   {
-    title: 'Staff Photographer',
-    company: 'The New York Times',
-    location: 'New York, NY',
-    period: '2018 — 2020',
-    description: 'Covered breaking news, features, and editorial assignments for print and digital platforms. Specialized in portrait photography and human interest stories. Work featured on front page 47 times.',
-    skills: ['Editorial Photography', 'Breaking News', 'Portrait Photography', 'Deadline Management', 'Photo Editing'],
-  },
-  {
-    title: 'Creative Director',
-    company: 'Time Magazine',
-    location: 'New York, NY',
-    period: '2016 — 2018',
-    description: 'Oversaw visual direction for special issues and cover stories. Collaborated with editors to develop compelling visual narratives. Managed relationships with contributing photographers worldwide.',
-    skills: ['Creative Direction', 'Visual Strategy', 'Team Coordination', 'Brand Identity', 'Magazine Publishing'],
-  },
-  {
-    title: 'Staff Photographer',
-    company: 'VII Photo Agency',
-    location: 'Berlin, Germany',
-    period: '2014 — 2016',
-    description: 'Worked on long-term documentary projects focusing on social issues and human rights. Assignments included coverage in conflict zones and humanitarian crises across Europe and Middle East.',
-    skills: ['Documentary', 'Conflict Photography', 'Humanitarian Coverage', 'Long-form Projects', 'Risk Assessment'],
-  },
-  {
-    title: 'Junior Photographer',
-    company: 'Magnum Photos',
-    location: 'London, UK',
-    period: '2012 — 2014',
-    description: 'Assisted senior photographers on international assignments. Developed technical skills in both digital and analog photography. First solo exhibition at the agency gallery in 2013.',
-    skills: ['Analog Photography', 'Digital Processing', 'Studio Lighting', 'Archive Management', 'Exhibition Curation'],
+    title: 'Desenvolvedor Fullstack (Projetos Pessoais)',
+    company: 'Independente',
+    period: '2024 — Atual',
+    description: 'Desenvolvimento de aplicações completas com autenticação JWT, controle de permissões, validação de dados e organização utilizando arquitetura hexagonal.',
+    skills: ['JWT', 'Roles & Permissions', 'Zod', 'Arquitetura Hexagonal'],
   },
 ]
 
@@ -59,19 +42,19 @@ const fadeInUp: Variants = {
 
 export function Work() {
   return (
-    <section id="work" className="section-padding">
+    <section id="work" className=" section-padding -mt-14">
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
-        <motion.div {...fadeInUp} className="mb-16">
-          <span className="text-sm text-gray-500 tracking-widest uppercase">Career</span>
+        <motion.div {...fadeInUp} className="mb-13">
+          <span className="text-sm text-gray-500 tracking-widest uppercase">Carreira</span>
           <div className="w-6 h-px bg-gray-600 mt-2" />
         </motion.div>
 
         <motion.h2
           {...fadeInUp}
-          className="font-display text-[10vw] lg:text-section leading-none tracking-tight mb-16 lg:mb-24"
+          className="font-display -mt-2 text-[10vw] lg:text-section leading-none tracking-tight mb-13 lg:mb-24"
         >
-          WORK<br />EXPERIENCE
+          EXPERIÊNCIA <br />PROFISSIONAL
         </motion.h2>
 
         {/* Experiences */}

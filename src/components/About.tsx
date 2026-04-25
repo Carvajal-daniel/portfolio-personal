@@ -17,8 +17,8 @@ export function About() {
     <section id="about" className="section-padding">
       <div className="max-w-7xl mx-auto">
         {/* Section Label */}
-        <motion.div {...fadeInUp} className="mb-16">
-          <span className="text-sm text-gray-500 tracking-widest uppercase">About Bruce</span>
+        <motion.div {...fadeInUp} className="mb-13">
+          <span className="text-sm text-gray-500 tracking-widest uppercase">sobre Daniel</span>
           <div className="w-6 h-px bg-gray-600 mt-2" />
         </motion.div>
 
@@ -44,30 +44,15 @@ export function About() {
             className="order-1 lg:order-2 flex items-center"
           >
             <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
-              It may not be obvious, but Bruce studied computer science at MIT, 
-              with a minor in visual arts. Preferring lenses to algorithms, 
-              he quickly abandoned a promising tech career to study Photography 
-              and Visual Storytelling at Parsons School of Design in New York.
+              Comecei minha jornada na tecnologia estudando desenvolvimento web e rapidamente me interessei por construir aplicações completas, do front ao back-end.
+
+              Hoje atuo como desenvolvedor fullstack, criando projetos com foco em performance, organização de código e experiência do usuário.
+
+              Estou em constante evolução, buscando transformar conhecimento em soluções reais e crescer profissionalmente na área.
             </p>
           </motion.div>
         </div>
 
-        {/* Quote Block */}
-        <motion.div
-          {...fadeInUp}
-          className="mb-24 lg:mb-32"
-        >
-          <h2 className="font-display text-[8vw] lg:text-section leading-none tracking-tight text-gray-300">
-            "NAMED BY THE<br />
-            <span className="text-white underline underline-offset-8">2023 APERTURE AWARDS</span><br />
-            AS ONE OF THE TOP TEN<br />
-            PHOTOGRAPHERS IN THE WORLD."
-          </h2>
-          <p className="mt-6 text-sm text-gray-500 tracking-widest uppercase">
-            GLOBAL PHOTOGRAPHY<br />
-            DIRECTOR RANK
-          </p>
-        </motion.div>
 
         {/* Second Block */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 mb-24 lg:mb-32">
@@ -76,10 +61,9 @@ export function About() {
             className="flex items-center lg:text-right"
           >
             <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
-              Bruce spent a little over a year in New York before moving to 
-              London as a Junior Photographer for Magnum Photos. He met some 
-              incredible people at the legendary agency, and they're still 
-              friends to this day.
+              Atualmente, estou desenvolvendo um sistema de agendamento inteligente com integração via WhatsApp e uso de IA para automatizar processos, gerar insights e apoiar a gestão de pequenos negócios.
+
+              O projeto é focado em mercados com desafios reais de digitalização, como o venezuelano, buscando oferecer uma solução simples, acessível e eficiente.
             </p>
           </motion.div>
 
@@ -118,12 +102,11 @@ export function About() {
             className="flex items-center"
           >
             <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
-              From London, Bruce moved to Berlin with VII Photo Agency. Where he 
-              worked under a great Art Director, Hans Mueller. From there he 
-              went on to build a truly global career, first as Staff Photographer 
-              then as Creative Director for the likes of National Geographic, 
-              Time Magazine, and The New York Times, before finally going 
-              independent in 2020.
+              Desde que iniciei no desenvolvimento, venho evoluindo através de projetos práticos e estudo contínuo.
+
+              Realizei formações em desenvolvimento web pela Digital College e B7Web, além de estudar inglês para a área de tecnologia. Atualmente, estou me aprofundando em Inteligência Artificial e DevOps pela Alura.
+
+              Busco oportunidades para crescer profissionalmente e contribuir em projetos reais.
             </p>
           </motion.div>
         </div>

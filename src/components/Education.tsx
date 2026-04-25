@@ -1,7 +1,6 @@
 "use client"
 
-import { motion } from 'framer-motion'
-
+import { motion } from "framer-motion"
 import type { Variants } from "framer-motion"
 
 const fadeInUp: Variants = {
@@ -12,13 +11,48 @@ const fadeInUp: Variants = {
     transition: { duration: 0.8, ease: "easeOut" }
   }
 }
+
+const education = [
+  {
+    title: 'Formação Fullstack',
+    institution: 'Digital College',
+    period: '2024 — 2025',
+    description:
+      'Formação completa em desenvolvimento web com foco em aplicações modernas, boas práticas e desenvolvimento fullstack.',
+  },
+  {
+    title: 'Formação Fullstack',
+    institution: 'B7Web',
+    period: '2024 — atual',
+    description:
+      'Aprofundamento em desenvolvimento web com foco prático na construção de aplicações e fundamentos de front-end e back-end.',
+  },
+  {
+    title: 'Inteligência Artificial & DevOps (em andamento)',
+    institution: 'Alura',
+    period: '2026 — Atual',
+    description:
+      'Estudos focados em automação, integração de IA e práticas de infraestrutura e deploy.',
+  },
+  {
+    title: 'Inglês para Tecnologia (em andamento)',
+    institution: 'Alura',
+    period: '2026 — Atual',
+    description:
+      'Desenvolvimento da comunicação em inglês voltada para o ambiente técnico e profissional.',
+  }
+]
+
 export function Education() {
   return (
-    <section id="education" className="section-padding bg-[#0d0d0d]">
+    <section id="education" className="-mt-20 section-padding bg-[#0d0d0d]">
       <div className="max-w-7xl mx-auto">
-        {/* Section Title */}
-        <motion.div {...fadeInUp} className="mb-16">
-          <span className="text-sm text-gray-500 tracking-widest uppercase">Background</span>
+
+        {/* Title */}
+        <motion.div {...fadeInUp} className="mb-13">
+          <span className="text-sm text-gray-500 tracking-widest uppercase">
+            Formação
+          </span>
           <div className="w-6 h-px bg-gray-600 mt-2" />
         </motion.div>
 
@@ -26,110 +60,48 @@ export function Education() {
           {...fadeInUp}
           className="font-display text-[10vw] lg:text-section leading-none tracking-tight mb-16 lg:mb-24"
         >
-          EDUCATION
+          EDUCAÇÃO
         </motion.h2>
 
-        {/* Education Items */}
-        <div className="space-y-16 lg:space-y-24">
-          {/* MIT */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24">
-            <motion.div {...fadeInUp}>
-              <img
-                src="https://images.pexels.com/photos/207692/pexels-photo-207692.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="MIT Campus"
-                className="w-full h-auto grayscale"
-              />
-              <p className="mt-4 text-xs text-gray-500 tracking-widest uppercase">
-                MIT - CAMBRIDGE / USA
+        {/* Education List */}
+        <div className="space-y-12">
+          {education.map((item, index) => (
+            <motion.div
+              key={item.title + item.institution}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="border-t border-gray-800 pt-6"
+            >
+              <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+
+                {/* Left */}
+                <div>
+                  <h3 className="text-xl md:text-2xl text-white font-light">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-400 mt-1">
+                    {item.institution}
+                  </p>
+                </div>
+
+                {/* Right (period) */}
+                <div>
+                  <span className="text-sm text-gray-500 uppercase tracking-widest">
+                    {item.period}
+                  </span>
+                </div>
+              </div>
+
+              {/* Description */}
+              <p className="text-gray-400 mt-4 text-sm md:text-base max-w-2xl leading-relaxed">
+                {item.description}
               </p>
             </motion.div>
-
-            <motion.div
-              {...fadeInUp}
-              transition={{ ...fadeInUp.transition, delay: 0.2 }}
-              className="flex items-center"
-            >
-              <div>
-                <h3 className="text-xl lg:text-2xl font-light text-white mb-4">
-                  Computer Science & Visual Arts
-                </h3>
-                <p className="text-gray-400 leading-relaxed mb-4 text-sm lg:text-base">
-                  Started with algorithms, ended with apertures. Bruce's time at MIT 
-                  gave him a unique perspective on the intersection of technology 
-                  and visual storytelling that continues to influence his work today.
-                </p>
-                <p className="text-sm text-gray-500">2008 — 2012</p>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Parsons */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24">
-            <motion.div
-              {...fadeInUp}
-              className="flex items-center lg:order-2"
-            >
-              <div>
-                <h3 className="text-xl lg:text-2xl font-light text-white mb-4">
-                  Photography & Visual Storytelling
-                </h3>
-                <p className="text-gray-400 leading-relaxed mb-4 text-sm lg:text-base">
-                  The decision to pursue photography full-time led Bruce to Parsons, 
-                  where he developed his signature style of documentary portraiture 
-                  and learned the fundamentals of visual narrative.
-                </p>
-                <p className="text-sm text-gray-500">2013 — 2015</p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              {...fadeInUp}
-              transition={{ ...fadeInUp.transition, delay: 0.2 }}
-              className="lg:order-1"
-            >
-              <img
-                src="https://images.pexels.com/photos/1595391/pexels-photo-1595391.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="Parsons School of Design"
-                className="w-full h-auto grayscale"
-              />
-              <p className="mt-4 text-xs text-gray-500 tracking-widest uppercase">
-                PARSONS SCHOOL OF DESIGN - NEW YORK / USA
-              </p>
-            </motion.div>
-          </div>
-
-          {/* ICP */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24">
-            <motion.div {...fadeInUp}>
-              <img
-                src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                alt="International Center of Photography"
-                className="w-full h-auto grayscale"
-              />
-              <p className="mt-4 text-xs text-gray-500 tracking-widest uppercase">
-                ICP - NEW YORK / USA
-              </p>
-            </motion.div>
-
-            <motion.div
-              {...fadeInUp}
-              transition={{ ...fadeInUp.transition, delay: 0.2 }}
-              className="flex items-center"
-            >
-              <div>
-                <h3 className="text-xl lg:text-2xl font-light text-white mb-4">
-                  Documentary Photography Certificate
-                </h3>
-                <p className="text-gray-400 leading-relaxed mb-4 text-sm lg:text-base">
-                  An intensive program at ICP refined Bruce's approach to long-form 
-                  documentary projects and deepened his understanding of photographic 
-                  ethics and storytelling responsibility.
-                </p>
-                <p className="text-sm text-gray-500">2016</p>
-              </div>
-            </motion.div>
-          </div>
+          ))}
         </div>
+
       </div>
     </section>
   )

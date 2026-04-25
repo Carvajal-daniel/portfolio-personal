@@ -8,12 +8,12 @@ import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navItems = [
-  { id: 'about', label: 'About' },
+  { id: 'about', label: 'Sobre mim' },
   { id: 'skills', label: 'Skills' },
-  { id: 'work', label: 'Work' },
-  { id: 'education', label: 'Education' },
-  { id: 'writing', label: 'Writing' },
-  { id: 'speaking', label: 'Speaking' },
+  { id: 'work', label: 'Experiença' },
+  { id: 'education', label: 'Formação' },
+  { id: 'projects', label: 'Projetos' },
+  { id: 'contact', label: 'Contato' },
 ]
 
 const socialLinks = [

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 export function Hero() {
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="relative h-screen w-full overflow-hidden bg-black">
 
       {/* Background */}
       <div className="absolute inset-0">
@@ -18,7 +18,6 @@ export function Hero() {
     w-full 
     h-screen md:h-[110vh] 
     mt-10
-    ml-10
     object-cover 
     object-[center_20%] md:object-[center_30%] 
     brightness-75
@@ -38,7 +37,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            <h1 className="font-display flex flex-col iteem-left text-white leading-[0.85] tracking-tight text-[7rem] sm:text-[7rem] md:text-[9rem]">
+            <h1 className="font-display flex flex-col iteem-left text-white leading-[0.85] tracking-tight text-[7rem] sm:text-[7rem] md:text-[14rem]">
               <span className="block">DANIEL</span>
               <span className="block">CARVAJAL</span>
               <span className="block text-[3rem] ml-1 sm:text-[3rem] md:text-[4rem] mt-4">
@@ -52,8 +51,7 @@ export function Hero() {
               transition={{ delay: 0.5, duration: 0.8 }}
               className="mt-6 md:mt-8 text-sm sm:text-base text-white/80 max-w-sm md:max-w-md leading-relaxed"
             >
-              Desenvolvedor fullstack focado em criar experiências modernas,
-              rápidas e bem estruturadas. Transformo ideias em produtos reais.
+             Desenvolvedor fullstack focado em criar aplicações modernas, rápidas e bem estruturadas.
             </motion.p>
 
           </motion.div>

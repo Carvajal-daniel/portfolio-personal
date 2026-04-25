@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Bebas_Neue } from "next/font/google";
+import { Inter, Geist, Geist_Mono, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 
 import { Providers } from "@/components/providers";
@@ -11,9 +11,9 @@ const bebas = Bebas_Neue({
   variable: "--font-display",
 });
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-sans",
 });
 
 const geistMono = Geist_Mono({
@@ -33,9 +33,9 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="pt-BR"
-      className={`${bebas.variable} h-full antialiased`}
-    >
+  lang="pt-BR"
+  className={`${bebas.variable} ${inter.variable} h-full antialiased`}
+>
       <body className="min-h-full flex flex-col">
         <Providers>
           {children}
