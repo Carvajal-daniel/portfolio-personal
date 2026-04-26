@@ -5,7 +5,7 @@ import { useScrollVisibility } from '@/hooks/useScrollVisibility'
 import { cn } from '@/libs/utils'
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, Variants } from 'framer-motion' // Importado Variants aqui
 
 const navItems = [
   { id: 'home', label: 'Início' },
@@ -23,6 +23,42 @@ const socialLinks = [
   { label: 'Github', href: 'https://github.com/Carvajal-daniel' },
 ]
 
+// Tipando explicitamente como Variants para resolver o erro do TS
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.04,
+      delayChildren: 0.02,
+    }
+  },
+  exit: {
+    opacity: 0,
+    transition: { 
+      staggerChildren: 0.02, 
+      staggerDirection: -1 
+    }
+  }
+}
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 8 }, 
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { 
+      duration: 0.2, 
+      ease: "easeOut" // Agora o TS aceita pois está tipado como Variants
+    } 
+  },
+  exit: { 
+    opacity: 0, 
+    y: 8,
+    transition: { duration: 0.1 }
+  }
+}
+
 export function Navigation() {
   const activeSection = useActiveSection()
   const isVisible = useScrollVisibility()
@@ -34,11 +70,7 @@ export function Navigation() {
     setMounted(true)
     
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
-      }
+      setIsScrolled(window.scrollY > 20)
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -53,27 +85,6 @@ export function Navigation() {
     }
   }
 
-  // CONFIGURAÇÕES DE VELOCIDADE ACELERADAS
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05, // 🚀 Antes 0.1 (mais rápido entre itens)
-        delayChildren: 0.05    // 🚀 Antes 0.2 (começa quase na hora)
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 10 }, // Menos deslocamento para parecer mais rápido
-    show: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.2, ease: "easeOut" } 
-    }
-  }
-
   return (
     <>
       {/* MOBILE HEADER */}
@@ -83,7 +94,6 @@ export function Navigation() {
           isScrolled ? "bg-black/90 shadow-lg" : "bg-transparent"
         )}
       >
-        {/* BOTÃO MOBILE */}
         <button
           onClick={() => setMobileMenuOpen(prev => !prev)}
           className="text-white w-10 h-10 flex items-center justify-center focus:outline-none relative"
@@ -95,7 +105,7 @@ export function Navigation() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.15 }} // Troca de ícone mais rápida
+                transition={{ duration: 0.1 }}
                 className="flex items-center justify-center"
               >
                 <X size={28} />
@@ -107,7 +117,7 @@ export function Navigation() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.15 }} // Troca de ícone mais rápida
+                  transition={{ duration: 0.1 }}
                   className="flex items-center justify-center"
                 >
                   <Menu size={24} />
@@ -117,7 +127,6 @@ export function Navigation() {
           </AnimatePresence>
         </button>
 
-        {/* SOCIAL MOBILE ANIMADO */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
@@ -144,13 +153,14 @@ export function Navigation() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }} // Fundo abre mais rápido
+            transition={{ duration: 0.15 }}
             className="fixed inset-0 z-[90] bg-black/95 backdrop-blur-md flex flex-col justify-center px-8 md:hidden"
           >
             <motion.nav 
               variants={containerVariants}
               initial="hidden"
               animate="show"
+              exit="exit"
               className="flex flex-col gap-6"
             >
               {navItems
@@ -160,10 +170,10 @@ export function Navigation() {
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
                     variants={itemVariants}
-                    whileHover={{ x: 10 }}
+                    whileHover={{ x: 8 }}
                     className={cn(
                       "text-4xl font-bold text-white text-left transition-colors",
-                      activeSection === item.id ? "text-white" : "text-white/90"
+                      activeSection === item.id ? "text-white" : "text-white/60"
                     )}
                   >
                     {item.label}
@@ -175,8 +185,8 @@ export function Navigation() {
       </AnimatePresence>
 
       {/* DESKTOP SOCIAL */}
-      <div className="hidden md:block fixed top-0 left-0 right-0 z-50 p-10">
-        <div className="max-w-[1440px] mx-auto flex justify-end">
+      <div className="hidden md:block fixed top-0 left-0 right-0 z-50 p-10 pointer-events-none">
+        <div className="max-w-[1440px] mx-auto flex justify-end pointer-events-auto">
           <motion.div 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
