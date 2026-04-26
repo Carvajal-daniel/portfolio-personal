@@ -53,25 +53,30 @@ export function Navigation() {
     }
   }
 
+  // CONFIGURAÇÕES DE VELOCIDADE ACELERADAS
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
+        staggerChildren: 0.05, // 🚀 Antes 0.1 (mais rápido entre itens)
+        delayChildren: 0.05    // 🚀 Antes 0.2 (começa quase na hora)
       }
     }
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 15 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.2 } }
+    hidden: { opacity: 0, y: 10 }, // Menos deslocamento para parecer mais rápido
+    show: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.2, ease: "easeOut" } 
+    }
   }
 
   return (
     <>
-      {/* MOBILE HEADER - Fundo escuro apenas aqui no scroll */}
+      {/* MOBILE HEADER */}
       <div 
         className={cn(
           "fixed top-0 left-0 right-0 z-[100] p-4 flex justify-between items-center md:hidden transition-all duration-300",
@@ -90,6 +95,7 @@ export function Navigation() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.15 }} // Troca de ícone mais rápida
                 className="flex items-center justify-center"
               >
                 <X size={28} />
@@ -101,6 +107,7 @@ export function Navigation() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.15 }} // Troca de ícone mais rápida
                   className="flex items-center justify-center"
                 >
                   <Menu size={24} />
@@ -137,6 +144,7 @@ export function Navigation() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }} // Fundo abre mais rápido
             className="fixed inset-0 z-[90] bg-black/95 backdrop-blur-md flex flex-col justify-center px-8 md:hidden"
           >
             <motion.nav 
@@ -166,13 +174,13 @@ export function Navigation() {
         )}
       </AnimatePresence>
 
-      {/* DESKTOP SOCIAL - Mantido totalmente transparente agora */}
+      {/* DESKTOP SOCIAL */}
       <div className="hidden md:block fixed top-0 left-0 right-0 z-50 p-10">
         <div className="max-w-[1440px] mx-auto flex justify-end">
           <motion.div 
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.2 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
             className="flex items-center gap-6"
           >
             {socialLinks.map((link) => (
@@ -190,14 +198,14 @@ export function Navigation() {
         </div>
       </div>
 
-      {/* DESKTOP NAV (Canto inferior) */}
+      {/* DESKTOP NAV */}
       <motion.nav
-        initial={{ opacity: 0, x: 40 }}
+        initial={{ opacity: 0, x: 20 }}
         animate={{ 
           opacity: isVisible ? 1 : 0, 
-          x: isVisible ? 0 : 40 
+          x: isVisible ? 0 : 20 
         }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.3 }}
         className="hidden md:block fixed bottom-0 right-0 z-50 p-10"
       >
         <div className="flex flex-col items-end gap-3">
