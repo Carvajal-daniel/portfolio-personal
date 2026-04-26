@@ -4,8 +4,8 @@ import { useActiveSection } from '@/hooks/useActiveSection'
 import { useScrollVisibility } from '@/hooks/useScrollVisibility'
 import { cn } from '@/libs/utils'
 import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
-import { motion, AnimatePresence, Variants } from 'framer-motion' // Importado Variants aqui
+import { Menu, X, Download } from 'lucide-react'
+import { motion, AnimatePresence, Variants } from 'framer-motion'
 
 const navItems = [
   { id: 'home', label: 'Início' },
@@ -18,12 +18,11 @@ const navItems = [
 ]
 
 const socialLinks = [
-  { label: 'Email', href: 'mailto:danielcarvajal.dev@gmail.com' },
+  { label: 'CV', href: '/Daniel-Carvajal-FullStack.pdf' },
   { label: 'Instagram', href: 'https://www.instagram.com/daniel_vcarvajal' },
   { label: 'Github', href: 'https://github.com/Carvajal-daniel' },
 ]
 
-// Tipando explicitamente como Variants para resolver o erro do TS
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
@@ -43,14 +42,11 @@ const containerVariants: Variants = {
 }
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 8 }, 
+  hidden: { opacity: 0, y: 8 },
   show: { 
     opacity: 1, 
     y: 0, 
-    transition: { 
-      duration: 0.2, 
-      ease: "easeOut" // Agora o TS aceita pois está tipado como Variants
-    } 
+    transition: { duration: 0.2, ease: "easeOut" } 
   },
   exit: { 
     opacity: 0, 
@@ -106,7 +102,6 @@ export function Navigation() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.1 }}
-                className="flex items-center justify-center"
               >
                 <X size={28} />
               </motion.div>
@@ -118,7 +113,6 @@ export function Navigation() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.1 }}
-                  className="flex items-center justify-center"
                 >
                   <Menu size={24} />
                 </motion.div>
@@ -138,15 +132,18 @@ export function Navigation() {
               key={link.label}
               href={link.href}
               variants={itemVariants}
-              className="text-sm text-white font-medium"
+              className="text-sm text-white font-medium flex items-center gap-1"
+              target="_blank"
+              rel="noopener noreferrer"
             >
+              {link.label === 'CV' && <Download size={14} />}
               {link.label}
             </motion.a>
           ))}
         </motion.div>
       </div>
 
-      {/* MOBILE MENU OVERLAY */}
+      {/* MOBILE MENU */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -193,17 +190,27 @@ export function Navigation() {
             transition={{ duration: 0.3, delay: 0.1 }}
             className="flex items-center gap-6"
           >
-            {socialLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-white hover:opacity-60 transition-opacity"
-              >
-                {link.label}
-              </a>
-            ))}
+{socialLinks.map((link) => {
+  const isCV = link.label === 'CV'
+
+  return (
+    <a
+      key={link.label}
+      href={link.href}
+      {...(isCV
+        ? { download: true }
+        : { target: "_blank", rel: "noopener noreferrer" })}
+      className={`flex items-center gap-2 text-sm transition-all ${
+        isCV
+          ? "px-3 py-1 border border-white/20 rounded-md text-white hover:bg-white hover:text-black"
+          : "text-white hover:opacity-60"
+      }`}
+    >
+      {isCV && <Download size={14} />}
+      {isCV ? "Currículo" : link.label}
+    </a>
+  )
+})}
           </motion.div>
         </div>
       </div>
