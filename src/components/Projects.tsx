@@ -69,7 +69,7 @@ const projects = [
   title: 'Sistema de Automação de Agendamentos com IA',
   image: '/agendas.png',
   description:
-    'Sistema em desenvolvimento para automação de agendamentos com integração via WhatsApp e uso de IA para atendimento automatizado e recuperação de clientes.',
+  'Plataforma em desenvolvimento que automatiza agendamentos, centraliza o atendimento via WhatsApp e utiliza IA para gerar promoções e conteúdos estratégicos para pequenos negócios.',
   impact:
     'Arquitetura focada em backend escalável, automação de processos e integração com serviços externos.',
   tech: [
