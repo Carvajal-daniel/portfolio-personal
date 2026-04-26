@@ -27,10 +27,11 @@ export function BackToTop() {
       onClick={scrollToTop}
       aria-label="Voltar ao topo"
       className={`
+        md:hidden
         fixed bottom-6 z-50
         shadow-lg
-        shadow-gray-700/40
-        right-6 md:right-auto md:left-6
+        shadow-gray-900/40
+        right-6 md:right-auto md:left-60
 
         w-11 h-11
         flex items-center justify-center

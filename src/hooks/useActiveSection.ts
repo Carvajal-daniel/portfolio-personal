@@ -1,42 +1,46 @@
 "use client"
 
-import { useState, useEffect } from 'react'
-
-const sections = ['about', 'skills', 'work', 'education', 'writing', 'speaking', 'contact']
+import { useEffect, useState } from "react"
 
 export function useActiveSection() {
-  const [activeSection, setActiveSection] = useState<string>('about')
+  const [activeSection, setActiveSection] = useState("home")
 
   useEffect(() => {
-    const observers: IntersectionObserver[] = []
+    const handleScroll = () => {
+      const scrollY = window.scrollY
 
-    sections.forEach((sectionId) => {
-      const element = document.getElementById(sectionId)
-      if (!element) return
+      // 👇 PRIORIDADE TOTAL: topo da página
+      if (scrollY < 120) {
+        setActiveSection("home")
+        return
+      }
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveSection(sectionId)
-            }
-          })
-        },
-        {
-          rootMargin: '-20% 0px -60% 0px',
-          threshold: 0,
+      const sections = document.querySelectorAll("section")
+
+      let current = "home"
+
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop
+        const sectionHeight = section.clientHeight
+        const id = section.getAttribute("id") || ""
+
+        // 👇 área ativa mais precisa
+        if (
+          scrollY >= sectionTop - 150 &&
+          scrollY < sectionTop + sectionHeight - 150
+        ) {
+          current = id
         }
-      )
+      })
 
-      observer.observe(element)
-      observers.push(observer)
-    })
-
-    return () => {
-      observers.forEach((observer) => observer.disconnect())
+      setActiveSection(current)
     }
+
+    window.addEventListener("scroll", handleScroll)
+    handleScroll()
+
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   return activeSection
 }
-

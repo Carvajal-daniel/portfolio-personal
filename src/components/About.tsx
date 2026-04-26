@@ -16,28 +16,32 @@ export function About() {
   return (
     <section id="about" className="section-padding">
       <div className="max-w-7xl mx-auto">
+
         {/* Section Label */}
         <motion.div {...fadeInUp} className="mb-13">
-          <span className="text-sm text-gray-500 tracking-widest uppercase">sobre Daniel</span>
+          <span className="text-sm text-gray-500 tracking-widest uppercase">
+            sobre Daniel
+          </span>
           <div className="w-6 h-px bg-gray-600 mt-2" />
         </motion.div>
 
-        {/* First Block */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 mb-24 lg:mb-32">
+        {/* FIRST BLOCK */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 mb-24 lg:mb-32 items-center">
+
+          {/* IMAGEM */}
           <motion.div
             {...fadeInUp}
             className="order-2 lg:order-1"
           >
             <img
-              src="https://images.pexels.com/photos/2608517/pexels-photo-2608517.jpeg?auto=compress&cs=tinysrgb&w=1200"
-              alt="Early work - Street photography"
-              className="w-full h-auto grayscale"
+              src="/abouth.jpg"
+              alt="desenvolvedor trabalhando com código"
+              className="w-full h-auto transition-all duration-700
+              rounded-2xl shadow-md shadow-gray-900/80 hover:scale-[1.01]"
             />
-            <p className="mt-4 text-xs text-gray-500 tracking-widest uppercase">
-              PARSONS SCHOOL OF DESIGN - NEW YORK / USA
-            </p>
           </motion.div>
 
+          {/* TEXTO */}
           <motion.div
             {...fadeInUp}
             transition={{ ...fadeInUp.transition, delay: 0.2 }}
@@ -54,11 +58,13 @@ export function About() {
         </div>
 
 
-        {/* Second Block */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 mb-24 lg:mb-32">
+        {/* SECOND BLOCK */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 mb-24 lg:mb-32 items-center">
+
+          {/* TEXTO */}
           <motion.div
             {...fadeInUp}
-            className="flex items-center lg:text-right"
+            className="order-1 lg:order-1 flex items-center lg:text-right"
           >
             <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
               Atualmente, estou desenvolvendo um sistema de agendamento inteligente com integração via WhatsApp e uso de IA para automatizar processos, gerar insights e apoiar a gestão de pequenos negócios.
@@ -67,39 +73,29 @@ export function About() {
             </p>
           </motion.div>
 
+          {/* IMAGEM */}
           <motion.div
             {...fadeInUp}
             transition={{ ...fadeInUp.transition, delay: 0.2 }}
+            className="order-2 lg:order-2"
           >
             <img
-              src="https://images.pexels.com/photos/1264210/pexels-photo-1264210.jpeg?auto=compress&cs=tinysrgb&w=1200"
-              alt="Magnum Photos Office"
-              className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-700"
+              src="/agendas.png"
+              alt="dashboard com automação e inteligência artificial"
+              className="w-full h-auto rounded-2xl shadow-md shadow-gray-700/80 hover:scale-[1.01] transition-all duration-700"
             />
-            <p className="mt-4 text-xs text-gray-500 tracking-widest uppercase">
-              MAGNUM PHOTOS - LONDON / UK
-            </p>
           </motion.div>
         </div>
 
-        {/* Third Block */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24">
-          <motion.div {...fadeInUp}>
-            <img
-              src="https://images.pexels.com/photos/3062541/pexels-photo-3062541.jpeg?auto=compress&cs=tinysrgb&w=1200"
-              alt="Bruce shooting for National Geographic"
-              className="w-full h-auto grayscale"
-            />
-            <p className="mt-4 text-xs text-gray-500 tracking-widest uppercase">
-              SHOOTING FOR NATIONAL GEOGRAPHIC - PATAGONIA / AR<br />
-              (2019)
-            </p>
-          </motion.div>
 
+        {/* THIRD BLOCK */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 items-center">
+
+          {/* TEXTO */}
           <motion.div
             {...fadeInUp}
             transition={{ ...fadeInUp.transition, delay: 0.2 }}
-            className="flex items-center"
+            className="order-1 lg:order-2 flex items-center"
           >
             <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
               Desde que iniciei no desenvolvimento, venho evoluindo através de projetos práticos e estudo contínuo.
@@ -109,7 +105,21 @@ export function About() {
               Busco oportunidades para crescer profissionalmente e contribuir em projetos reais.
             </p>
           </motion.div>
+
+          {/* IMAGEM */}
+          <motion.div
+            {...fadeInUp}
+            className="order-2 lg:order-1"
+          >
+            <img
+              src="/education.jpg"
+              alt="estudando desenvolvimento e tecnologia"
+              className="w-full h-auto transition-all duration-700
+              rounded-2xl shadow-md shadow-gray-600/80 hover:scale-[1.01]"
+            />
+          </motion.div>
         </div>
+
       </div>
     </section>
   )

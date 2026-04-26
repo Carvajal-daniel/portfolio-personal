@@ -28,9 +28,9 @@ export function Contact() {
         {/* Title */}
         <motion.h2
           {...fadeInUp}
-          className="font-display text-[12vw] lg:text-hero leading-none tracking-tight mb-12"
+          className="font-display text-[12vw] md:text-[12rem] lg:text-hero leading-none tracking-tight mb-12"
         >
-          Vamos conversar
+          Vamos <br /> conversar
         </motion.h2>
 
         {/* Description */}

@@ -6,13 +6,13 @@ import type { Variants } from "framer-motion"
 
 const experiences = [
 
- {
-  title: 'Desenvolvedor Fullstack (Projeto em Desenvolvimento)',
-  company: 'Sistema de Automação de Agendamentos com IA',
-  period: '2026 — Atual',
-  description: 'Desenvolvimento de um sistema que automatiza o processo de agendamento com integração via WhatsApp, utilizando IA para automatizar atendimentos, recuperar clientes inativos e gerar promoções inteligentes aprovadas pelo proprietário. O objetivo é aumentar a retenção de clientes e otimizar a gestão de pequenos negócios.',
-  skills: ['Next.js', 'Node.js', 'REST API', 'Integração com IA', 'Docker'],
-},
+  {
+    title: 'Desenvolvedor Fullstack (Projeto em Desenvolvimento)',
+    company: 'Sistema de Automação de Agendamentos com IA',
+    period: '2026 — Atual',
+    description: 'Desenvolvimento de um sistema que automatiza o processo de agendamento com integração via WhatsApp, utilizando IA para automatizar atendimentos, recuperar clientes inativos e gerar promoções inteligentes aprovadas pelo proprietário. O objetivo é aumentar a retenção de clientes e otimizar a gestão de pequenos negócios.',
+    skills: ['Next.js', 'Node.js', 'REST API', 'Integração com IA', 'Docker'],
+  },
   {
     title: 'Desenvolvedor Frontend (Colaboração)',
     company: 'HomeFly',
@@ -52,9 +52,9 @@ export function Work() {
 
         <motion.h2
           {...fadeInUp}
-          className="font-display -mt-2 text-[10vw] lg:text-section leading-none tracking-tight mb-13 lg:mb-24"
+          className="font-display -mt-2 text-[10vw] md:text-[12rem] lg:text-section leading-none tracking-tight mb-13 lg:mb-24"
         >
-          EXPERIÊNCIA <br />PROFISSIONAL
+          EXPERIÊNCIA <br /> PROFISSIONAL
         </motion.h2>
 
         {/* Experiences */}

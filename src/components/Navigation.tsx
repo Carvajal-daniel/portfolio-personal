@@ -8,9 +8,10 @@ import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navItems = [
+  { id: 'home', label: 'Início' },
   { id: 'about', label: 'Sobre mim' },
   { id: 'skills', label: 'Skills' },
-  { id: 'work', label: 'Experiença' },
+  { id: 'work', label: 'Experiência' },
   { id: 'education', label: 'Formação' },
   { id: 'projects', label: 'Projetos' },
   { id: 'contact', label: 'Contato' },
@@ -38,8 +39,8 @@ export function Navigation() {
   return (
     <>
       {/* MOBILE HEADER */}
-      <div className="fixed top-0 left-0 right-0 z-[70] p-6 flex justify-between items-start md:hidden">
-        
+      <div className="fixed top-0 left-0 right-0 z-50 p-6 flex justify-between items-start md:hidden">
+
         {/* BOTÃO */}
         <button
           onClick={() => setMobileMenuOpen(prev => !prev)}
@@ -107,7 +108,7 @@ export function Navigation() {
         </motion.div>
       </div>
 
-      {/* MENU OVERLAY */}
+      {/* MENU OVERLAY (MOBILE) */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -123,38 +124,38 @@ export function Navigation() {
               variants={{
                 hidden: {},
                 visible: {
-                  transition: {
-                    staggerChildren: 0.1,
-                  },
+                  transition: { staggerChildren: 0.1 },
                 },
               }}
               className="flex flex-col gap-6"
             >
-              {navItems.map((item) => (
-                <motion.button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  variants={{
-                    hidden: { opacity: 0, y: 40 },
-                    visible: { opacity: 1, y: 0 },
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className={cn(
-                    "text-3xl text-white text-left",
-                    "hover:opacity-60",
-                    activeSection === item.id && "opacity-60"
-                  )}
-                >
-                  {item.label}
-                </motion.button>
-              ))}
+              {navItems
+                .filter(item => item.id !== 'home') // ❌ remove "Início" no mobile
+                .map((item) => (
+                  <motion.button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    variants={{
+                      hidden: { opacity: 0, y: 40 },
+                      visible: { opacity: 1, y: 0 },
+                    }}
+                    transition={{ duration: 0.3 }}
+                    className={cn(
+                      "text-3xl text-white text-left",
+                      "hover:opacity-60",
+                      activeSection === item.id && "opacity-60"
+                    )}
+                  >
+                    {item.label}
+                  </motion.button>
+                ))}
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* DESKTOP SOCIAL */}
-      <div className="hidden md:block fixed top-0 right-0 z-50 p-6 md:p-10">
+      <div className="hidden md:block fixed top-0 right-0 md:mr-10 z-50 p-6 md:p-10">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -194,7 +195,7 @@ export function Navigation() {
           x: isVisible ? 0 : 40,
         }}
         transition={{ duration: 0.4 }}
-        className="hidden md:block fixed bottom-0 right-0 z-50 p-6 md:p-10"
+        className="hidden md:block fixed bottom-0 right-0 md:mr-8 z-50 p-6 md:p-10"
       >
         <div className="flex flex-col items-end gap-3">
           {navItems.map((item) => (
@@ -203,7 +204,7 @@ export function Navigation() {
               onClick={() => scrollToSection(item.id)}
               whileHover={{ opacity: 0.6 }}
               className={cn(
-                "text-sm text-white relative py-1",
+                "text-sm text-white relative py-1 cursor-pointer",
                 activeSection === item.id &&
                   "after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-white"
               )}

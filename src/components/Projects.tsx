@@ -5,37 +5,51 @@ import type { Variants } from "framer-motion"
 
 const projects = [
   {
-    title: 'Sistema de Automação de Agendamentos com IA',
+    title: 'E-commerce de Moda (Fullstack)',
+    image: '/ecommerce.png',
     description:
-      'Desenvolvimento de um sistema que automatiza o processo de agendamento com integração via WhatsApp, utilizando IA para automatizar atendimentos, recuperar clientes inativos e gerar promoções inteligentes aprovadas pelo proprietário.',
+      'Aplicação de e-commerce com autenticação de usuários, busca de produtos, filtros por categorias e navegação dinâmica.',
     impact:
-      'O objetivo é aumentar a retenção de clientes e otimizar a gestão de pequenos negócios.',
+      'Sistema funcional com cadastro e login de usuários, integração com banco de dados e interface totalmente responsiva.',
     tech: [
       'Next.js',
       'TypeScript',
-      'Tailwind',
-      'shadcn/ui',
       'Node.js',
-      'Fastify',
+      'Express',
       'PostgreSQL',
       'Drizzle ORM',
-      'Docker',
-      'BetterAuth',
-      'Arquitetura Hexagonal'
+      'Better Auth'
     ],
-    status: 'Em desenvolvimento',
+    status: 'Projeto funcional (não finalizado comercialmente)',
     links: {
-      live: 'http://uplys.com.br/',
-      frontend: 'https://github.com/Carvajal-daniel/uplys-front',
-      backend: 'https://github.com/Carvajal-daniel/api-uplys'
+      live: 'https://ecomerce-tainara.vercel.app/',
+      frontend: 'https://github.com/Carvajal-daniel/ecomerce-tainara'
+    }
+  },
+  {
+    title: 'Cardápio Digital com Pedido via WhatsApp',
+    image: '/cardapio.png',
+    description:
+      'Sistema de cardápio digital com navegação por categorias, carrinho de compras e finalização de pedidos com envio direto para o WhatsApp.',
+    impact:
+      'Inclui validação de pagamento em dinheiro (controle de troco) e experiência totalmente responsiva para dispositivos móveis.',
+    tech: [
+      'React',
+      'JavaScript'
+    ],
+    status: 'Projeto funcional',
+    links: {
+      live: 'https://cardapio-react-coral.vercel.app/',
+      frontend: 'https://github.com/Carvajal-daniel/CardapioReact'
     }
   },
   {
     title: 'Sistema de Análise de Negócios com IA',
+    image: '/analybussine.png',
     description:
-      'Plataforma que permite a pequenos negócios cadastrar serviços e preços, analisando concorrência local e gerando relatórios com insights estratégicos.',
+      'Plataforma para análise de concorrência e geração de insights estratégicos para pequenos negócios.',
     impact:
-      'Ajuda na tomada de decisão e posicionamento competitivo no mercado.',
+      'Auxilia na tomada de decisões e posicionamento no mercado.',
     tech: [
       'Next.js',
       'TypeScript',
@@ -46,10 +60,36 @@ const projects = [
     ],
     status: 'Em desenvolvimento',
     links: {
+      live: 'https://analybusiness.vercel.app/',
       frontend: 'https://github.com/Carvajal-daniel/analyBusiness',
       backend: 'https://github.com/Carvajal-daniel/api-analy-business'
     }
   },
+  {
+  title: 'Sistema de Automação de Agendamentos com IA',
+  image: '/agendas.png',
+  description:
+    'Sistema em desenvolvimento para automação de agendamentos com integração via WhatsApp e uso de IA para atendimento automatizado e recuperação de clientes.',
+  impact:
+    'Arquitetura focada em backend escalável, automação de processos e integração com serviços externos.',
+  tech: [
+    'Next.js',
+    'TypeScript',
+    'Tailwind',
+    'Node.js',
+    'Fastify',
+    'PostgreSQL',
+    'Drizzle ORM',
+    'Docker'
+  ],
+  status: 'Em desenvolvimento (UI baseada em conceito)',
+  links: {
+    live: 'http://uplys.com.br/',
+    frontend: 'https://github.com/Carvajal-daniel/uplys-front',
+    backend: 'https://github.com/Carvajal-daniel/api-uplys'
+  }
+},
+  
 ]
 
 const fadeInUp: Variants = {
@@ -76,7 +116,7 @@ export function Projects() {
 
         <motion.h2
           {...fadeInUp}
-          className="font-display text-[10vw] lg:text-section leading-none tracking-tight mb-12 lg:mb-24"
+          className="font-display text-[10vw] md:text-[12rem] lg:text-section leading-none tracking-tight mb-12 lg:mb-24"
         >
           PROJECTS
         </motion.h2>
@@ -92,10 +132,29 @@ export function Projects() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="border-t border-gray-800 py-10 md:py-12 group px-4 -mx-4 hover:bg-gray-900/30 transition-colors"
             >
-              <div className="flex flex-col md:flex-row md:justify-between gap-6">
 
-                {/* Left */}
-                <div className="max-w-2xl">
+              <div className="flex flex-col md:flex-row gap-8 items-start">
+
+                {/* IMAGE */}
+                {project.image && (
+                  <a
+                    href={project.links.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full md:w-[40%] group"
+                  >
+                    <div className="overflow-hidden rounded-xl border border-gray-800">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </div>
+                  </a>
+                )}
+
+                {/* CONTENT */}
+                <div className="flex-1 max-w-2xl">
 
                   <h3 className="text-lg md:text-xl lg:text-2xl text-white font-light group-hover:text-gray-300 transition-colors">
                     {project.title}
@@ -159,13 +218,13 @@ export function Projects() {
 
                   </div>
 
-                </div>
+                  {/* Status */}
+                  <div className="mt-4">
+                    <span className="text-xs text-gray-600 uppercase tracking-widest">
+                      {project.status}
+                    </span>
+                  </div>
 
-                {/* Right */}
-                <div className="flex items-start md:items-center">
-                  <span className="text-sm text-gray-600 uppercase tracking-widest">
-                    {project.status}
-                  </span>
                 </div>
 
               </div>

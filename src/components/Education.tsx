@@ -58,7 +58,7 @@ export function Education() {
 
         <motion.h2
           {...fadeInUp}
-          className="font-display text-[10vw] lg:text-section leading-none tracking-tight mb-16 lg:mb-24"
+          className="font-display text-[10vw] md:text-[12rem] lg:text-section leading-none tracking-tight mb-16 lg:mb-24"
         >
           EDUCAÇÃO
         </motion.h2>
