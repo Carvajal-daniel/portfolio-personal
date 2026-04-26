@@ -3,7 +3,6 @@ import { Inter, Geist, Geist_Mono, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 
 import { Providers } from "@/components/providers";
-import { NavigationWrapper } from "@/components/NavigationWrapper";
 
 const bebas = Bebas_Neue({
   weight: "400",

@@ -1,7 +1,8 @@
 "use client"
 
-import { motion } from 'framer-motion'
-import type { Variants } from "framer-motion"
+import { motion } from "framer-motion"
+import Image from "next/image"
+import { useMemo } from "react"
 
 const projects = [
   {
@@ -66,94 +67,101 @@ const projects = [
     }
   },
   {
-  title: 'Sistema de Automação de Agendamentos com IA',
-  image: '/agendas.png',
-  description:
-  'Plataforma em desenvolvimento que automatiza agendamentos, centraliza o atendimento via WhatsApp e utiliza IA para gerar insights, promoções e conteúdos estratégicos para pequenos negócios.',
-  impact:
-    'Arquitetura focada em backend escalável, automação de processos e integração com serviços externos.',
-  tech: [
-    'Next.js',
-    'TypeScript',
-    'Tailwind',
-    'Node.js',
-    'Fastify',
-    'PostgreSQL',
-    'Drizzle ORM',
-    'Docker'
-  ],
-  status: 'Em desenvolvimento (UI baseada em conceito)',
-  links: {
-    live: 'http://uplys.com.br/',
-    frontend: 'https://github.com/Carvajal-daniel/uplys-front',
-    backend: 'https://github.com/Carvajal-daniel/api-uplys'
-  }
-},
-  
+    title: 'Sistema de Automação de Agendamentos com IA',
+    image: '/agendas.png',
+    description:
+      'Plataforma em desenvolvimento que automatiza agendamentos, centraliza o atendimento via WhatsApp e utiliza IA para gerar insights, promoções e conteúdos estratégicos para pequenos negócios.',
+    impact:
+      'Arquitetura focada em backend escalável, automação de processos e integração com serviços externos.',
+    tech: [
+      'Next.js',
+      'TypeScript',
+      'Tailwind',
+      'Node.js',
+      'Fastify',
+      'PostgreSQL',
+      'Drizzle ORM',
+      'Docker'
+    ],
+    status: 'Em desenvolvimento (UI baseada em conceito)',
+    links: {
+      live: 'http://uplys.com.br/',
+      frontend: 'https://github.com/Carvajal-daniel/uplys-front',
+      backend: 'https://github.com/Carvajal-daniel/api-uplys'
+    }
+  },
 ]
 
-const fadeInUp: Variants = {
-  initial: { opacity: 0, y: 40 },
-  whileInView: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: "easeOut" }
-  }
-}
-
 export function Projects() {
+  const shouldReduceMotion = useMemo(() => {
+    if (typeof window === "undefined") return false
+    return navigator.hardwareConcurrency <= 4
+  }, [])
+
   return (
     <section id="projects" className="section-padding -mt-20">
       <div className="max-w-7xl mx-auto">
 
-        {/* Title */}
-        <motion.div {...fadeInUp} className="mb-13">
+        {/* Label */}
+        <div className="mb-13">
           <span className="text-sm text-gray-500 tracking-widest uppercase">
             Projetos
           </span>
           <div className="w-6 h-px bg-gray-600" />
-        </motion.div>
+        </div>
 
+        {/* Title */}
         <motion.h2
-          {...fadeInUp}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.4 }}
           className="font-display text-[10vw] md:text-[12rem] lg:text-section leading-none tracking-tight mb-12 lg:mb-24"
         >
           PROJECTS
         </motion.h2>
 
-        {/* Projects */}
+        {/* List */}
         <div className="space-y-0">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="border-t border-gray-800 py-10 md:py-12 group px-4 -mx-4 hover:bg-gray-900/30 transition-colors"
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+              whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{
+                duration: 0.35,
+                delay: shouldReduceMotion ? 0 : index * 0.04
+              }}
+              className="border-t border-gray-800 py-10 md:py-12 group px-4 -mx-4 hover:bg-gray-900/20 transition-colors"
             >
-
               <div className="flex flex-col md:flex-row gap-8 items-start">
 
-                {/* IMAGE */}
+                {/* Image */}
                 {project.image && (
                   <a
                     href={project.links.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full md:w-[40%] group"
+                    className="w-full md:w-[40%]"
                   >
                     <div className="overflow-hidden rounded-xl border border-gray-800">
-                      <img
+
+                      <Image
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                        width={800}
+                        height={500}
+                        quality={70}
+                        sizes="(max-width: 768px) 100vw, 40vw"
+                        className="w-full h-auto object-cover transition-transform duration-300 hover:scale-[1.02]"
                       />
+
                     </div>
                   </a>
                 )}
 
-                {/* CONTENT */}
+                {/* Content */}
                 <div className="flex-1 max-w-2xl">
 
                   <h3 className="text-lg md:text-xl lg:text-2xl text-white font-light group-hover:text-gray-300 transition-colors">
@@ -184,34 +192,19 @@ export function Projects() {
                   <div className="flex flex-wrap gap-4 mt-5 text-sm text-gray-500">
 
                     {project.links.live && (
-                      <a
-                        href={project.links.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-white transition-colors"
-                      >
+                      <a href={project.links.live} target="_blank" className="hover:text-white">
                         🌐 Live →
                       </a>
                     )}
 
                     {project.links.frontend && (
-                      <a
-                        href={project.links.frontend}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-white transition-colors"
-                      >
+                      <a href={project.links.frontend} target="_blank" className="hover:text-white">
                         💻 Frontend →
                       </a>
                     )}
 
                     {project.links.backend && (
-                      <a
-                        href={project.links.backend}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-white transition-colors"
-                      >
+                      <a href={project.links.backend} target="_blank" className="hover:text-white">
                         ⚙️ Backend →
                       </a>
                     )}

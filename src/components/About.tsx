@@ -1,52 +1,47 @@
 "use client"
 
-import { motion } from 'framer-motion'
-import type { Variants } from "framer-motion"
-
-const fadeInUp: Variants = {
-  initial: { opacity: 0, y: 40 },
-  whileInView: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: "easeOut" }
-  }
-}
+import { motion } from "framer-motion"
+import Image from "next/image"
+import { useMemo } from "react"
 
 export function About() {
+  const shouldReduceMotion = useMemo(() => {
+    if (typeof window === "undefined") return false
+    return navigator.hardwareConcurrency <= 4
+  }, [])
+
   return (
     <section id="about" className="section-padding">
       <div className="max-w-7xl mx-auto">
 
-        {/* Section Label */}
-        <motion.div {...fadeInUp} className="mb-13">
+        {/* Label */}
+        <div className="mb-13">
           <span className="text-sm text-gray-500 tracking-widest uppercase">
             sobre Daniel
           </span>
           <div className="w-6 h-px bg-gray-600 mt-2" />
-        </motion.div>
+        </div>
 
-        {/* FIRST BLOCK */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 mb-24 lg:mb-32 items-center">
-
-          {/* IMAGEM */}
-          <motion.div
-            {...fadeInUp}
-            className="order-2 lg:order-1"
-          >
-            <img
+        {/* BLOCK 1 */}
+        <motion.div
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
+          whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 mb-24 lg:mb-32 items-center"
+        >
+          <div className="order-2 lg:order-1">
+            <Image
               src="/abouth.jpg"
               alt="desenvolvedor trabalhando com código"
-              className="w-full h-auto transition-all duration-700
-              rounded-2xl shadow-md shadow-gray-900/80 hover:scale-[1.01]"
+              width={800}
+              height={600}
+              quality={70}
+              className="w-full h-auto rounded-xl shadow-md shadow-gray-900/60"
             />
-          </motion.div>
+          </div>
 
-          {/* TEXTO */}
-          <motion.div
-            {...fadeInUp}
-            transition={{ ...fadeInUp.transition, delay: 0.2 }}
-            className="order-1 lg:order-2 flex items-center"
-          >
+          <div className="order-1 lg:order-2 flex items-center">
             <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
               Comecei minha jornada na tecnologia estudando desenvolvimento web e rapidamente me interessei por construir aplicações completas, do front ao back-end.
 
@@ -54,49 +49,46 @@ export function About() {
 
               Estou em constante evolução, buscando transformar conhecimento em soluções reais e crescer profissionalmente na área.
             </p>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
 
-
-        {/* SECOND BLOCK */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 mb-24 lg:mb-32 items-center">
-
-          {/* TEXTO */}
-          <motion.div
-            {...fadeInUp}
-            className="order-1 lg:order-1 flex items-center lg:text-right"
-          >
+        {/* BLOCK 2 */}
+        <motion.div
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
+          whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 mb-24 lg:mb-32 items-center"
+        >
+          <div className="order-1 lg:order-1 flex items-center lg:text-right">
             <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
               Atualmente, estou desenvolvendo um sistema de agendamento inteligente com integração via WhatsApp e uso de IA para automatizar processos, gerar insights e apoiar a gestão de pequenos negócios.
 
               O projeto é focado em mercados com desafios reais de digitalização, como o venezuelano, buscando oferecer uma solução simples, acessível e eficiente.
             </p>
-          </motion.div>
+          </div>
 
-          {/* IMAGEM */}
-          <motion.div
-            {...fadeInUp}
-            transition={{ ...fadeInUp.transition, delay: 0.2 }}
-            className="order-2 lg:order-2"
-          >
-            <img
+          <div className="order-2 lg:order-2">
+            <Image
               src="/agendas.png"
               alt="dashboard com automação e inteligência artificial"
-              className="w-full h-auto rounded-2xl shadow-md shadow-gray-700/80 hover:scale-[1.01] transition-all duration-700"
+              width={800}
+              height={600}
+              quality={70}
+              className="w-full h-auto rounded-xl shadow-md shadow-gray-700/60"
             />
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
 
-
-        {/* THIRD BLOCK */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 items-center">
-
-          {/* TEXTO */}
-          <motion.div
-            {...fadeInUp}
-            transition={{ ...fadeInUp.transition, delay: 0.2 }}
-            className="order-1 lg:order-2 flex items-center"
-          >
+        {/* BLOCK 3 */}
+        <motion.div
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 30 }}
+          whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 items-center"
+        >
+          <div className="order-1 lg:order-2 flex items-center">
             <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
               Desde que iniciei no desenvolvimento, venho evoluindo através de projetos práticos e estudo contínuo.
 
@@ -104,21 +96,19 @@ export function About() {
 
               Busco oportunidades para crescer profissionalmente e contribuir em projetos reais.
             </p>
-          </motion.div>
+          </div>
 
-          {/* IMAGEM */}
-          <motion.div
-            {...fadeInUp}
-            className="order-2 lg:order-1"
-          >
-            <img
+          <div className="order-2 lg:order-1">
+            <Image
               src="/education.jpg"
               alt="estudando desenvolvimento e tecnologia"
-              className="w-full h-auto transition-all duration-700
-              rounded-2xl shadow-md shadow-gray-600/80 hover:scale-[1.01]"
+              width={800}
+              height={600}
+              quality={70}
+              className="w-full h-auto rounded-xl shadow-md shadow-gray-600/60"
             />
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
 
       </div>
     </section>

@@ -1,11 +1,9 @@
 "use client"
 
 import { motion } from 'framer-motion'
-import type { Variants } from "framer-motion"
-
+import { useMemo } from "react"
 
 const experiences = [
-
   {
     title: 'Desenvolvedor Fullstack (Projeto em Desenvolvimento)',
     company: 'Sistema de Automação de Agendamentos com IA',
@@ -30,28 +28,30 @@ const experiences = [
   },
 ]
 
-
-const fadeInUp: Variants = {
-  initial: { opacity: 0, y: 40 },
-  whileInView: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: "easeOut" }
-  }
-}
-
 export function Work() {
-  return (
-    <section id="work" className=" section-padding -mt-14">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Title */}
-        <motion.div {...fadeInUp} className="mb-13">
-          <span className="text-sm text-gray-500 tracking-widest uppercase">Carreira</span>
-          <div className="w-6 h-px bg-gray-600 mt-2" />
-        </motion.div>
+  const shouldReduceMotion = useMemo(() => {
+    if (typeof window === "undefined") return false
+    return navigator.hardwareConcurrency <= 4
+  }, [])
 
+  return (
+    <section id="work" className="section-padding -mt-14">
+      <div className="max-w-7xl mx-auto">
+
+        {/* Label */}
+        <div className="mb-13">
+          <span className="text-sm text-gray-500 tracking-widest uppercase">
+            Carreira
+          </span>
+          <div className="w-6 h-px bg-gray-600 mt-2" />
+        </div>
+
+        {/* Title */}
         <motion.h2
-          {...fadeInUp}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.4 }}
           className="font-display -mt-2 text-[10vw] md:text-[12rem] lg:text-section leading-none tracking-tight mb-13 lg:mb-24"
         >
           EXPERIÊNCIA <br /> PROFISSIONAL
@@ -62,14 +62,18 @@ export function Work() {
           {experiences.map((exp, index) => (
             <motion.article
               key={exp.company + exp.period}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.8, ease: 'easeOut', delay: index * 0.1 }}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+              whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{
+                duration: 0.35,
+                delay: shouldReduceMotion ? 0 : index * 0.05 // 👈 menor delay
+              }}
               className="border-t border-gray-800 py-8 md:py-12 lg:py-16 group"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
-                {/* Left Column - Title & Company */}
+
+                {/* Left */}
                 <div className="lg:col-span-5">
                   <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-white mb-2">
                     {exp.title}
@@ -82,18 +86,19 @@ export function Work() {
                   </p>
                 </div>
 
-                {/* Middle Column - Period */}
+                {/* Middle */}
                 <div className="lg:col-span-2">
                   <p className="text-sm text-gray-500 tracking-widest uppercase">
                     {exp.period}
                   </p>
                 </div>
 
-                {/* Right Column - Description & Skills */}
+                {/* Right */}
                 <div className="lg:col-span-5">
                   <p className="text-gray-400 leading-relaxed mb-6 text-sm lg:text-base">
                     {exp.description}
                   </p>
+
                   <div className="flex flex-wrap gap-2">
                     {exp.skills.map((skill) => (
                       <span
@@ -105,11 +110,14 @@ export function Work() {
                     ))}
                   </div>
                 </div>
+
               </div>
             </motion.article>
           ))}
+
           <div className="border-t border-gray-800" />
         </div>
+
       </div>
     </section>
   )

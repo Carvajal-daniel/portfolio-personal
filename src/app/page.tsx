@@ -21,30 +21,37 @@ export default function Index() {
       </header>
 
       <main>
+        {/* 1. Impacto inicial */}
         <section id="home" aria-label="Apresentação">
           <Hero />
         </section>
 
+        {/* 2. Quem é você e o que busca (Contexto rápido) */}
         <section id="about" aria-label="Sobre mim">
           <About />
         </section>
 
-        <section id="skills" aria-label="Habilidades técnicas">
-          <Skills />
-        </section>
-
-        <section id="experience" aria-label="Experiência">
-          <Work />
-        </section>
-
-        <section id="education" aria-label="Educação">
-          <Education />
-        </section>
-
+        {/* 3. PROJETOS: Prova real do que você sabe fazer */}
         <section id="projects" aria-label="Projetos">
           <Projects />
         </section>
 
+        {/* 4. SKILLS: O "como" você faz (apoia os projetos acima) */}
+        <section id="skills" aria-label="Habilidades técnicas">
+          <Skills />
+        </section>
+
+        {/* 5. EXPERIÊNCIA: Onde você já passou */}
+        <section id="experience" aria-label="Experiência">
+          <Work />
+        </section>
+
+        {/* 6. FORMAÇÃO: Teu background acadêmico */}
+        <section id="education" aria-label="Educação">
+          <Education />
+        </section>
+
+        {/* 7. CALL TO ACTION: Hora de te chamarem */}
         <section id="contact" aria-label="Contato">
           <Contact />
         </section>
@@ -54,9 +61,7 @@ export default function Index() {
         <Footer />
       </footer>
 
-      {/* 👇 AQUI */}
       <BackToTop />
-
     </div>
   )
 }
